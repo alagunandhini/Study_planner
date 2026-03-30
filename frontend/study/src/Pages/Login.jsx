@@ -1,4 +1,23 @@
+import { useState } from "react";
+
 const Login=()=>{
+    // to store name, email, password
+    const [form,setForm]=useState({
+        name:"",
+        email:"",
+        password:""
+    });
+
+     const handleChange=(e)=>{
+        setForm({...form ,[e.target.name]:e.target.value}) ;
+
+        
+    }
+
+    const handleSubmit=()=>{
+        console.log(form);
+        
+    }
     return(
         <>
        <div className="flex bg-gradient-to-br from-purple-50 to-pink-100 min-h-screen justify-between items-center">
@@ -20,22 +39,23 @@ const Login=()=>{
              <div className="flex flex-col  bg-[#C8A2C8]  rounded-xl px-20 py-10  mt-[-240px] ">
               
             <label className="text-white pt-15"> Name:</label>
-            <input placeholder="Princess Name"
+            <input  name="name" placeholder="Princess Name" onChange={handleChange}
                 className="px-6 py-3 rounded-full bg-white/90 border-none outline-none focus:ring-4 focus:ring-purple-300 transition-all text-purple-900 placeholder:text-purple-200"/>
-             <label className="text-white"> Email</label>
-            <input placeholder="Email"
+             <label className="text-white" > Email</label>
+            <input name="email" type="email" placeholder="Email" onChange={handleChange}
                 className="px-6 py-3 rounded-full bg-white/90 border-none outline-none focus:ring-4 focus:ring-purple-300 transition-all text-purple-900 placeholder:text-purple-200"/>
              <label className="text-white" > Password:</label>
-            <input placeholder="Password"
+            <input  name="password" placeholder="Password" onChange={handleChange}
                 className="px-6 py-3 rounded-full bg-white/90 border-none outline-none focus:ring-4 focus:ring-purple-300 transition-all text-purple-900 placeholder:text-purple-200"/>
                 
-                <button className="mt-6 w-full py-4 bg-white text-[#C8A2C8] font-black rounded-full shadow-lg hover:bg-purple-50 hover:scale-[1.03] transition-all uppercase tracking-widest">
+                <button onClick={handleSubmit} className="mt-6 w-full py-4 bg-white text-[#C8A2C8] font-black rounded-full shadow-lg hover:bg-purple-50 hover:scale-[1.03] transition-all uppercase tracking-widest">
               Enter Castel
             </button>
           
                 
             </div>
-            <p className="mt-4">Already a Princess ?  just click here </p>
+            <p className="mt-4">Already a Princess ?  just click here {form.name} </p>
+          
           
 
 
