@@ -6,6 +6,7 @@ import './App.css'
 import Welcome from './Pages/Welcome'
 import {BrowserRouter,Routes,Route} from "react-router-dom";
 import Login from './Pages/Login';
+import Features from './Pages/Features';
 
 
 
@@ -20,6 +21,7 @@ function App() {
      <Routes>
       <Route path='/' element={<Welcome/>}/>
       <Route path='/login' element={<Login/>}/>
+       <Route path='/features' element={<Features/>}/>
      </Routes>
      
      </BrowserRouter>

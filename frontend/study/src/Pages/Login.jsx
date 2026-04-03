@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { toast, ToastContainer } from "react-toastify";
 
 const Login=()=>{
     // to store name, email, password
@@ -14,12 +15,17 @@ const Login=()=>{
         
     }
 
-    const handleSubmit=()=>{
+    const handleSubmit=(e)=>{
+        e.preventDefault();
+       
+        
         console.log(form);
         
     }
+   const [signup,setSignup] = useState(false);
     return(
         <>
+        <ToastContainer  position="bottom-center" autoClose={4000} />
        <div className="flex bg-gradient-to-br from-purple-50 to-pink-100 min-h-screen justify-between items-center">
 
         <div className="">
@@ -36,25 +42,26 @@ const Login=()=>{
 
             </div>
 
-             <div className="flex flex-col  bg-[#C8A2C8]  rounded-xl px-20 py-10  mt-[-240px] ">
+             <form className="flex flex-col  bg-[#C8A2C8]  rounded-xl w-[420px] px-10 py-10  mt-[-240px] " onSubmit={handleSubmit}>
               
-            <label className="text-white pt-15"> Name:</label>
-            <input  name="name" placeholder="Princess Name" onChange={handleChange}
-                className="px-6 py-3 rounded-full bg-white/90 border-none outline-none focus:ring-4 focus:ring-purple-300 transition-all text-purple-900 placeholder:text-purple-200"/>
-             <label className="text-white" > Email</label>
-            <input name="email" type="email" placeholder="Email" onChange={handleChange}
+            {signup && (<><label className="text-white pt-15"> Name:</label>
+            <input  name="name" placeholder="Princess Name"  onChange={handleChange} required
+                className="w-full px-6 py-3 rounded-full bg-white/90 border-none outline-none focus:ring-4 focus:ring-purple-300 transition-all text-purple-900 placeholder:text-purple-200"/></>)}
+             <label className={`text-white ${signup?"m-0":"mt-10"} `} > Email</label>
+            
+            <input type="email" name="email"  placeholder="Email"  required  onChange={handleChange}
                 className="px-6 py-3 rounded-full bg-white/90 border-none outline-none focus:ring-4 focus:ring-purple-300 transition-all text-purple-900 placeholder:text-purple-200"/>
              <label className="text-white" > Password:</label>
-            <input  name="password" placeholder="Password" onChange={handleChange}
+            <input  type="password" name="password" placeholder="Password"  required  onChange={handleChange}
                 className="px-6 py-3 rounded-full bg-white/90 border-none outline-none focus:ring-4 focus:ring-purple-300 transition-all text-purple-900 placeholder:text-purple-200"/>
                 
-                <button onClick={handleSubmit} className="mt-6 w-full py-4 bg-white text-[#C8A2C8] font-black rounded-full shadow-lg hover:bg-purple-50 hover:scale-[1.03] transition-all uppercase tracking-widest">
-              Enter Castel
+                <button type="submit" className="mt-6 w-full py-4 bg-white text-[#C8A2C8] font-black rounded-full shadow-lg hover:bg-purple-50 hover:scale-[1.03] transition-all uppercase tracking-widest">
+              Enter Castle
             </button>
           
                 
-            </div>
-            <p className="mt-4">Already a Princess ?  just click here {form.name} </p>
+            </form>
+            <p className="mt-4">{signup? "Already a princess ? ":"New here ?"}  <span onClick={()=> setSignup(!signup)}> Click here </span></p>
           
           
 
